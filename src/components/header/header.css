@@ -1,0 +1,62 @@
+
+
+header {
+  background-image: url(../../assets/background-header.png);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.logo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  img {
+    width: 60px;
+  }
+}
+
+.banner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+
+  h1 {
+   font-family: "Passion One", sans-serif;
+   color: white;
+   font-weight: 400;
+   font-size: 48px;
+   text-transform: uppercase;
+  }
+}
+
+.banner_options {
+   display: flex;
+   justify-content: center;
+   align-items: center;
+}
+
+.banner_option {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+h3 {
+   color: var(--font-color-blue);
+}
+
+p {
+   color: white;
+}
+
+span {
+  color: var(--font-color-blue);
+  font-weight: 700;
+}
