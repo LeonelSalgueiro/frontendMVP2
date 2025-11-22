@@ -6,16 +6,34 @@ header {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: 100vh;
+  height: 95vh;
+  position: relative;
 }
 
 .logo {
   display: flex;
-  justify-content: center;
+  justify-items: center;
   align-items: center;
+  border: 1px solid #06b6d433;
+  background-color: #06b5d43d;
+  border-radius: 15px;
+  padding: 0.25rem 0.75rem;
+  font-size: 0.875rem;
+  margin: 1.5rem;
+  gap: 5px;
+  position: absolute;
+  top: 10%;
+
 
   img {
-    width: 60px;
+    width: 15px;
+    padding-bottom: 2px;
+
+  }
+
+  span {
+    color: var(--font-color-blue);
+    font-weight: 400;
   }
 }
 
@@ -24,14 +42,30 @@ header {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-
+  width: 100vh;
+  margin: 20px;
 
   h1 {
    font-family: "Passion One", sans-serif;
    color: white;
-   font-weight: 400;
-   font-size: 48px;
+   font-weight: 600;
+   font-size: 78px;
    text-transform: uppercase;
+   text-align: center;
+   margin: 20px;
+
+   strong {
+     font-family: "Passion One", sans-serif;
+     color: var(--font-color-blue);
+     font-weight: 600;
+     font-size: 78px;
+     text-transform: uppercase;
+   }
+  }
+
+  h3 {
+   color: var(--text);
+   text-align: center;
   }
 }
 
@@ -39,24 +73,22 @@ header {
    display: flex;
    justify-content: center;
    align-items: center;
+   gap: 30px;
 }
 
 .banner_option {
   display: flex;
   justify-content: center;
   align-items: center;
+  gap: 5px;
+
+  p {
+   color: var(--text);
+  }
+
+  img {
+  width: 20px;
+  }
 }
 
 
-h3 {
-   color: var(--font-color-blue);
-}
-
-p {
-   color: white;
-}
-
-span {
-  color: var(--font-color-blue);
-  font-weight: 700;
-}

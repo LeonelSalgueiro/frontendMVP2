@@ -1,6 +1,6 @@
 import LogoIcon from "../../assets/logo.png";
-import ShieldIcon from "../../assets/icons/shield.svg"
-import LockIcon from "../../assets/icons/lock-simple.svg"
+import ShieldGrayIcon from "../../assets/icons/shield-gray.svg"
+import LockGrayIcon from "../../assets/icons/lock-simple-gray.svg"
 import "./header.css"
 
 export function Header() {
@@ -12,18 +12,18 @@ export function Header() {
         </div>
 
         <div className="banner">
-          <h1>Is your digital identity secure?</h1>
-          <h3>Instantly check if your email address has been exposed in known data breaches. 
+          <h1>Is your digital<br /><strong>identity secure?</strong></h1>
+          <h3>Instantly check if your email address has been exposed in known <br />data breaches. 
           Protect yourself now.</h3>
         </div>
 
         <div className="banner_options">
           <div className="banner_option">
-            <img src={ShieldIcon} alt="" />
+            <img src={ShieldGrayIcon} alt="" />
             <p>End-to-end encryption</p>
           </div>
           <div className="banner_option">
-            <img src={LockIcon} alt="" />
+            <img src={LockGrayIcon} alt="" />
             <p>Anonymous verification</p>
           </div>
         </div>
