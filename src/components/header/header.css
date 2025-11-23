@@ -1,5 +1,4 @@
 
-
 header {
   background-image: url(../../assets/background-header.png);
   display: flex;
@@ -7,7 +6,6 @@ header {
   justify-content: center;
   align-items: center;
   height: 95vh;
-  position: relative;
 }
 
 .logo {
@@ -21,7 +19,6 @@ header {
   font-size: 0.875rem;
   margin: 1.5rem;
   gap: 5px;
-  position: absolute;
   top: 10%;
 
 

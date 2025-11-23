@@ -9,10 +9,10 @@ export function Main() {
           <form>
               <div className="email_input">
                 <img src={MagnifyingIcon} alt="" />
-                <input type="email" placeholder="Digite seu email para verificar..." required />
+                <input type="email" placeholder="Enter your email to verify..." required />
               </div>
               <button>
-                Verificar
+                Verify
               </button>
           </form>
       </div>
