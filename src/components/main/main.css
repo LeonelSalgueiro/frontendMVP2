@@ -7,14 +7,17 @@ main {
 
 .container {
   display: flex;
+  width: 100vh;
+  height: 150%;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 600px;
-  height: 96px;
   border: 1px solid var(--primary-dim);
   border-radius: 5px;
   background-color: var(--card);
   margin: 50px;
+  padding: 20px;
+  gap: 10px;
 }
 
 form {
@@ -53,4 +56,70 @@ button {
   border-radius: 5px;
   background-color: #06b6d4;
   border: none;
+}
+
+/* Result area styles added for main component */
+.result_area {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  
+}
+
+.result_card {
+  width: 600px;
+  background-color: var(--card);
+  border: 1px solid var(--primary-dim);
+  border-radius: 6px;
+  padding: 16px;
+  box-shadow: 0 6px 18px rgba(2,6,23,0.06);
+  color: var(--text);
+}
+
+.result_card h3 {
+  margin: 0 0 8px 0;
+  font-size: 18px;
+  color: var(--danger, #ef4444);
+}
+
+.result_card p {
+  margin: 0 0 12px 0;
+  color: var(--muted, #9ca3af);
+}
+
+.result_card ul {
+  margin: 0;
+  padding-left: 18px;
+}
+
+.error {
+  width: 600px;
+  margin: 0 auto 12px auto;
+  padding: 8px 12px;
+  border-radius: 4px;
+  background: rgba(239,68,68,0.06);
+  color: var(--danger, #ef4444);
+  border: 1px solid rgba(239,68,68,0.12);
+  text-align: center;
+}
+
+/* Ensure email input children styles apply in plain CSS */
+.email_input img {
+  width: 20px;
+  height: 20px;
+}
+
+.email_input input {
+  border: none;
+  background-color: transparent;
+  width: 100%;
+  color: var(--text);
+  outline: none;
+}
+
+button[disabled] {
+  opacity: 0.6;
+  cursor: not-allowed;
 }
