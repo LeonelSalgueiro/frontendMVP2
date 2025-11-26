@@ -13,7 +13,6 @@ type ExposedResult = {
 }
 
 const API_BASE = import.meta.env.VITE_EXPOSED_API || "https://api.xposedornot.com"
-const USE_MOCK = (import.meta.env.VITE_USE_MOCK === 'true')
 
 export function Main() {
   const [email, setEmail] = useState("")
@@ -30,18 +29,7 @@ export function Main() {
       return
     }
 
-    // Se estivermos em modo mock (desenvolvimento sem backend), simula uma resposta
-    if (USE_MOCK) {
-      setLoading(true)
-      // Simula latência de rede
-      await new Promise((r) => setTimeout(r, 700))
-      const mockData: ExposedResult = email.includes("leak")
-        ? { found: true, count: 2, items: ["MockLeakDB (2023-01-01)", "OtherLeak (2022-05-10)"] }
-        : { found: false, count: 0, items: [] }
-      setResult(mockData)
-      setLoading(false)
-      return
-    }
+    // Always call the real API (no mock)
 
     setLoading(true)
     try {
