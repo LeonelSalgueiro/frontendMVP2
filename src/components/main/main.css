@@ -1,5 +1,7 @@
 main {
   display: flex;
+  flex-direction: column;
+  align-items: center;
   justify-content: center;
   border-bottom: 1px solid var(--primary-dim);
 }
@@ -25,6 +27,21 @@ form {
   justify-content: center;
   align-items: center;
   gap: 8px;
+
+  button {
+    width: 123px;
+    height: 42px;
+    font-size: 14px;
+    border-radius: 5px;
+    background-color: #06b6d4;
+    border: none;
+  }
+
+  button:hover {
+    background-color: #0aa7c3;
+    cursor: pointer;
+  }
+
 }
 
 .email_input {
@@ -49,33 +66,32 @@ form {
   }
 }
 
-button {
-  width: 123px;
-  height: 42px;
-  font-size: 14px;
-  border-radius: 5px;
-  background-color: #06b6d4;
-  border: none;
-}
 
 /* Result area styles added for main component */
 .result_area {
   width: 100%;
   display: flex;
-  flex-direction: column;
+  flex-wrap: wrap;
   align-items: center;
   justify-content: center;
   
 }
 
 .result_card {
-  width: 600px;
+  width: 300px;
   background-color: var(--card);
   border: 1px solid var(--primary-dim);
   border-radius: 6px;
   padding: 16px;
   box-shadow: 0 6px 18px rgba(2,6,23,0.06);
   color: var(--text);
+  margin: 20px;
+}
+
+.email_display {
+  font-size: 0.9rem;
+  color: #ffffff;
+  margin: 0.5rem 0 0 0;
 }
 
 .result_card h3 {
@@ -119,7 +135,38 @@ button {
   outline: none;
 }
 
-button[disabled] {
-  opacity: 0.6;
-  cursor: not-allowed;
+
+.card_header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.card_actions {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.edit_btn, .delete_btn {
+  width: 40px;
+  height: 40px;
+  background-color: var(--primary-dim);
+  border: 1px solid var(--primary-dim);
+  cursor: pointer;
+  border-radius: 5px;
+
+  img {
+    width: 20px;
+  }
+}
+
+.edit_btn:hover {
+  background-color: #06b5d43d;
+  border: 1px solid #06b6d433;
+}
+
+.delete_btn:hover {
+  background-color: #06b5d43d;
+  border: 1px solid #06b6d433;
 }

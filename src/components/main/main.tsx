@@ -1,5 +1,7 @@
 import "./main.css"
 import MagnifyingIcon from "../../assets/icons/magnifying-glass.svg"
+import Trash from "../../assets/icons/trash.svg"
+import Pencil from "../../assets/icons/pencil.svg"
 import { useState } from "react"
 
 type ExposedResult = {
@@ -8,22 +10,24 @@ type ExposedResult = {
   items?: string[]
   raw?: any
   Error?: string
+  id: string
+  email?: string
 }
 
 const API_BASE = import.meta.env.VITE_EXPOSED_API || "https://api.xposedornot.com"
 
-export function Main() {
+export function MainAplication() {
   const [email, setEmail] = useState("")
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState<string | null>(null)
   const [result, setResult] = useState<ExposedResult | null>(null)
+  const [results, setResults] = useState<ExposedResult[]>([]) // Lista de resultados
 
   function flattenBreaches(raw: unknown): string[] {
     if (!raw) return []
     if (Array.isArray(raw)) {
       return raw.flat(Infinity).filter((v) => typeof v === "string")
     }
-    // sometimes API might return an object with nested arrays
     try {
       const asAny = raw as any
       if (asAny && typeof asAny === "object") {
@@ -60,12 +64,30 @@ export function Main() {
       console.debug("check-email response:", data)
 
       if (data && (data as any).Error === "Not found") {
-        setResult({ found: false, count: 0, items: [], raw: data })
+        const newResult: ExposedResult = { 
+          found: false, 
+          count: 0, 
+          items: [], 
+          raw: data,
+          id: Date.now().toString(),
+          email: email 
+        }
+        setResult(newResult)
+        setResults([...results, newResult])
         return
       }
 
       const names = flattenBreaches((data as any).breaches ?? [])
-      setResult({ found: names.length > 0, count: names.length, items: names, raw: data })
+      const newResult: ExposedResult = {
+        found: names.length > 0,
+        count: names.length,
+        items: names,
+        raw: data,
+        id: Date.now().toString(),
+        email: email
+      }
+      setResult(newResult)
+      setResults([...results, newResult])
     } catch (err) {
       const message = err instanceof Error ? err.message : String(err)
       console.error("Error when checking email:", err)
@@ -73,6 +95,15 @@ export function Main() {
     } finally {
       setLoading(false)
     }
+  }
+
+  function handleDelete(id: string) {
+    setResults(results.filter(r => r.id !== id))
+  }
+
+  function handleEdit(id: string) {
+    // Aqui vou adicionar lógica no backend
+    console.log("Editar card com ID:", id)
   }
 
   return (
@@ -93,29 +124,54 @@ export function Main() {
             {loading ? "Checking..." : "Verify"}
           </button>
         </form>
+      </div>
 
-        <div className="result_area">
-          {error && <div className="error">{error}</div>}
+      {/* Result Area moved outside of the container */}
+      <div className="result_area">
+        {error && <div className="error">{error}</div>}
 
-          {result && result.found && result.items && result.items.length > 0 && (
-            <div className="result_card">
-              <h3>Email-related leaks</h3>
-              <p>Number of occurrences: {result.count}</p>
-              <ul>
-                {result.items.map((name, i) => (
-                  <li key={i}>{name}</li>
-                ))}
-              </ul>
+        {/* Renderizar todos os resultados salvos */}
+        {results.map((res) => (
+          <div key={res.id || Date.now()} className="result_card">
+            <div className="card_header">
+              <div>
+                <h3>
+                  {res.found ? "Email-related leaks" : "No leaks found"}
+                </h3>
+                <p className="email_display">{res.email}</p>
+              </div>
+              <div className="card_actions">
+                <button 
+                  className="edit_btn" 
+                  onClick={() => handleEdit(res.id)}
+                  title="Edit"
+                >
+                  <img src={Pencil} alt="" />
+                </button>
+                <button 
+                  className="delete_btn" 
+                  onClick={() => handleDelete(res.id)}
+                  title="Delete"
+                >
+                  <img src={Trash} alt="" />
+                </button>
+              </div>
             </div>
-          )}
 
-          {result && result.found === false && (
-            <div className="result_card">
-              <h3>No leaks found</h3>
+            {res.found && res.items && res.items.length > 0 ? (
+              <>
+                <p>Number of occurrences: {res.count}</p>
+                <ul>
+                  {res.items.map((name, i) => (
+                    <li key={i}>{name}</li>
+                  ))}
+                </ul>
+              </>
+            ) : (
               <p>We found no public records of leaks for this email address.</p>
-            </div>
-          )}
-        </div>
+            )}
+          </div>
+        ))}
       </div>
     </main>
   )
