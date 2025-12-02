@@ -20,8 +20,7 @@ export function MainAplication() {
   const [email, setEmail] = useState("")
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState<string | null>(null)
-  const [result, setResult] = useState<ExposedResult | null>(null)
-  const [results, setResults] = useState<ExposedResult[]>([]) // Lista de resultados
+  const [results, setResults] = useState<ExposedResult[]>([])
 
   function flattenBreaches(raw: unknown): string[] {
     if (!raw) return []
@@ -43,7 +42,6 @@ export function MainAplication() {
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault()
     setError(null)
-    setResult(null)
     if (!email) {
       setError("Please enter a valid email address.")
       return
@@ -72,7 +70,6 @@ export function MainAplication() {
           id: Date.now().toString(),
           email: email 
         }
-        setResult(newResult)
         setResults([...results, newResult])
         return
       }
@@ -86,7 +83,6 @@ export function MainAplication() {
         id: Date.now().toString(),
         email: email
       }
-      setResult(newResult)
       setResults([...results, newResult])
     } catch (err) {
       const message = err instanceof Error ? err.message : String(err)
@@ -102,7 +98,6 @@ export function MainAplication() {
   }
 
   function handleEdit(id: string) {
-    // Aqui vou adicionar lógica no backend
     console.log("Editar card com ID:", id)
   }
 
@@ -126,13 +121,11 @@ export function MainAplication() {
         </form>
       </div>
 
-      {/* Result Area moved outside of the container */}
       <div className="result_area">
         {error && <div className="error">{error}</div>}
 
-        {/* Renderizar todos os resultados salvos */}
         {results.map((res) => (
-          <div key={res.id || Date.now()} className="result_card">
+          <div key={res.id} className="result_card">
             <div className="card_header">
               <div>
                 <h3>

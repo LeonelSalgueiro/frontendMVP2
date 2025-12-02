@@ -66,19 +66,18 @@ form {
   }
 }
 
-
-/* Result area styles added for main component */
 .result_area {
   width: 100%;
   display: flex;
   flex-wrap: wrap;
   align-items: center;
+  align-content: center;
   justify-content: center;
   
 }
 
 .result_card {
-  width: 300px;
+  width: fit-content;
   background-color: var(--card);
   border: 1px solid var(--primary-dim);
   border-radius: 6px;
@@ -139,7 +138,8 @@ form {
 .card_header {
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  align-items: flex-start;
+  gap: 10px;
   margin-bottom: 1rem;
 }
 
@@ -149,6 +149,9 @@ form {
 }
 
 .edit_btn, .delete_btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   width: 40px;
   height: 40px;
   background-color: var(--primary-dim);
