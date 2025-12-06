@@ -1,13 +1,14 @@
-# Etapa 1: build da aplicação
-FROM node:20-alpine AS builder
-WORKDIR /app
-COPY package*.json ./
-RUN npm install
-COPY . .
-RUN npm run build
+# Dockerfile do Frontend (Desenvolvimento)
+FROM node:20-alpine
 
-# Etapa 2: servir com Nginx
-FROM nginx:alpine
-COPY --from=builder /app/dist /usr/share/nginx/html
-EXPOSE 80
-CMD ["nginx", "-g", "daemon off;"]
+WORKDIR /app
+
+COPY package*.json ./
+
+RUN npm install
+
+COPY . .
+
+# O EXPOSE é opcional, pode tirar se quiser.
+# O importante é o comando abaixo:
+CMD ["npm", "run", "dev", "--", "--host"]

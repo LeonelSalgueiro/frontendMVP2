@@ -1,6 +1,29 @@
-version: "3"
+version: '3.8'
+
 services:
-  frontend:
-    build: .
+  # Serviço do Backend (Flask)
+  backend:
+    build:
+      context: ../backendMVP2
+      dockerfile: Dockerfile
     ports:
-      - "8080:80"
+      - "5000:5000"
+    volumes:
+      - ../backendMVP2:/app
+    environment:
+      - FLASK_ENV=development
+
+  # Serviço do Frontend (React/Vite)
+  frontend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "5173:5173"
+    volumes:
+      - .:/app
+      - /app/node_modules
+    environment:
+      - VITE_API_URL=http://localhost:5000
+    depends_on:
+      - backend
