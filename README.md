@@ -5,6 +5,13 @@ Aplicação frontend para verificação de vazamentos de e-mail (UI do projeto M
 - Código de inicialização: [src/index.tsx](src/index.tsx)  
 - Layout global: [src/global.css](src/global.css)
 
+
+## Modelo 1
+
+O modelo de projeto escolhido para este trabalho foi o da figura 1 onde o frontend consome a API externa e envia os dados para o backend e banco de dados.
+
+![modelo-1](./src//assets/modelo-1.png)
+
 ## Rodando localmente
 
 Requisitos: Node 20+/npm
