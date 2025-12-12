@@ -1,9 +1,9 @@
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import './global.css'
-import { Header } from "./components/header/Header.tsx"
-import { MainAplication } from "./components/main/Main.tsx"
-import { Footer } from "./components/footer/Footer.tsx"
+import { Header } from "./components/header/Header"
+import { MainAplication } from "./components/main/Main"
+import { Footer } from "./components/footer/Footer"
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
